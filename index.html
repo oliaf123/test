@@ -15,33 +15,32 @@
 <body>
     <h1>Hej världen!</h1>
     <div id="windy-container"></div> <!-- Här visas Windy-kartan -->
-    
+
     <!-- Lägg till Windy API -->
-    <script src="https://api.windy.com/assets/map-forecast/libBoot.js" 
-            onload="initializeWindy()" onerror="handleError()"></script>
+    <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
     <script>
-        function initializeWindy() {
-            console.log("Windy API laddades framgångsrikt!");
+        window.onload = function() {
+            console.log("Sidan har laddats.");
 
-            const options = {
-                key: 'vkfpwrjAIjQYa0VPkFYc3ndPEBRUTe6S',  // Ny API-nyckel
-                container: document.getElementById('windy-container'), // Anger platsen för kartan
-                lat: 59.3293, // Exempelkoordinater för Stockholm
-                lon: 18.0686,
-                zoom: 5
-            };
+            // Testa om Windy API-skriptet är tillgängligt
+            if (typeof windyInit === "function") {
+                console.log("Windy API-skriptet är laddat.");
 
-            try {
+                const options = {
+                    key: 'vkfpwrjAIjQYa0VPkFYc3ndPEBRUTe6S',  // Din API-nyckel
+                    container: document.getElementById('windy-container'),
+                    lat: 59.3293,  // Exempelkoordinater för Stockholm
+                    lon: 18.0686,
+                    zoom: 5
+                };
+
+                // Initialisera Windy-kartan
                 windyInit(options);
                 console.log("Windy-kartan initierades framgångsrikt.");
-            } catch (error) {
-                console.error("Fel vid initialisering av Windy:", error);
+            } else {
+                console.error("Windy API-skriptet kunde inte laddas korrekt.");
             }
-        }
-
-        function handleError() {
-            console.error("Fel: Windy API-skriptet kunde inte laddas.");
-        }
+        };
     </script>
 </body>
 </html>
