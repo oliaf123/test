@@ -13,14 +13,16 @@
     </style>
 </head>
 <body>
-    <h1>Hej världen!!!</h1>
+    <h1>Hej världen!</h1>
     <div id="windy-container"></div> <!-- Här visas Windy-kartan -->
     
     <!-- Lägg till Windy API -->
     <script src="https://api.windy.com/assets/map-forecast/libBoot.js" 
-            onload="initializeWindy()"></script>
+            onload="initializeWindy()" onerror="handleError()"></script>
     <script>
         function initializeWindy() {
+            console.log("Windy API laddades framgångsrikt!");
+
             const options = {
                 key: 'vkfpwrjAIjQYa0VPkFYc3ndPEBRUTe6S',  // Ny API-nyckel
                 container: document.getElementById('windy-container'), // Anger platsen för kartan
@@ -29,8 +31,16 @@
                 zoom: 5
             };
 
-            // Ladda Windy-kartan efter att skriptet är klart
-            windyInit(options);
+            try {
+                windyInit(options);
+                console.log("Windy-kartan initierades framgångsrikt.");
+            } catch (error) {
+                console.error("Fel vid initialisering av Windy:", error);
+            }
+        }
+
+        function handleError() {
+            console.error("Fel: Windy API-skriptet kunde inte laddas.");
         }
     </script>
 </body>
