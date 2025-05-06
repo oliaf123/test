@@ -3,9 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hej!</title>
+    <title>Hej Världen med Windy</title>
+    <style>
+        /* Gör så att Windy-kartan fyller en del av skärmen */
+        #windy-container {
+            width: 100%;
+            height: 500px;  /* Justera höjden på kartan här */
+        }
+    </style>
 </head>
 <body>
     <h1>Hej världen!</h1>
+    <div id="windy-container"></div> <!-- Här visas Windy-kartan -->
+    
+    <!-- Lägg till Windy API -->
+    <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
+    <script>
+        const options = {
+            key: 'UCL2VIHYH7rSag0kcM7nBzvB0GTLQBnP',  // Din API-nyckel
+            container: document.getElementById('windy-container'), // Anger platsen för kartan
+            lat: 59.3293, // Exempelkoordinater för Stockholm
+            lon: 18.0686,
+            zoom: 5
+        };
+        
+        // Ladda Windy-kartan
+        windyInit(options);
+    </script>
 </body>
 </html>
