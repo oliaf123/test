@@ -17,18 +17,21 @@
     <div id="windy-container"></div> <!-- Här visas Windy-kartan -->
     
     <!-- Lägg till Windy API -->
-    <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
+    <script src="https://api.windy.com/assets/map-forecast/libBoot.js" 
+            onload="initializeWindy()"></script>
     <script>
-        const options = {
-            key: 'UCL2VIHYH7rSag0kcM7nBzvB0GTLQBnP',  // Din API-nyckel
-            container: document.getElementById('windy-container'), // Anger platsen för kartan
-            lat: 59.3293, // Exempelkoordinater för Stockholm
-            lon: 18.0686,
-            zoom: 5
-        };
-        
-        // Ladda Windy-kartan
-        windyInit(options);
+        function initializeWindy() {
+            const options = {
+                key: 'UCL2VIHYH7rSag0kcM7nBzvB0GTLQBnP',  // Din API-nyckel
+                container: document.getElementById('windy-container'), // Anger platsen för kartan
+                lat: 59.3293, // Exempelkoordinater för Stockholm
+                lon: 18.0686,
+                zoom: 5
+            };
+
+            // Ladda Windy-kartan efter att skriptet är klart
+            windyInit(options);
+        }
     </script>
 </body>
 </html>
